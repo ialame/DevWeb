@@ -1,0 +1,595 @@
+\documentclass[a4paper]{article}
+ 
+% - taille de la fonte    : 10pt, 11pt, 12pt
+% - recto ou recto-verso    : oneside, twoside
+ 
+% Chargement d'extensions
+%\usepackage[latin1]{inputenc}    
+\usepackage[francais]{babel}    
+\AtBeginDocument{\def\labelitemi{$\bullet$}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{stmaryrd}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+
+\usepackage[cache=false]{minted}
+\usepackage{xcolor}
+%\setbeamercolor{background canvas}{bg=lightgray}
+\definecolor{LightGray}{gray}{0.9}
+\definecolor{monOrange}{rgb}{0.97,0.35,0.04}
+
+% Informations le titre, le(s) auteur(s), la date
+\title{Les bases du CSS}
+\author{Ibrahim ALAME}
+\date{\today}
+\includeonly{ introduction.tex} 
+\begin{document}
+ 
+\maketitle
+
+\section{Présentation du chapitre}
+\subsection{Objectifs {\color{monOrange}CSS}}
+%includegraphics[width=10cm]{images/image07.png}
+\begin{itemize}
+\item Dans ce chapitre nous allons réaliser notre premier projet !
+\item Nous allons faire un site avec plusieurs pages de présentation d'un café fictif à Paris.
+\item  Nous nous emploierons à vous montrer les meilleures pratiques de développement et nous mettrons en oeuvre tout ce que nous avons appris sur les langages HTML et CSS .
+\end{itemize}
+
+\subsection{Création du projet}
+\begin{enumerate}
+\item  Commencez par créer un dossier, par exemple cafe .
+\item  Dans ce dossier créez un dossier images qui contiendra les images de notre site. Ensuite ouvrez le dossier cafe dans VS Code .
+\item  Créez un dossier css au même niveau que le dossier images.
+\end{enumerate}
+\subsubsection{Création du fichier {\color{monOrange}styles.css}}
+Créez un fichier {\tt styles.css} dans le dossier {\color{monOrange}css}.
+
+Il est très courant dans un projet front-end de créer un fichier {\tt styles.css} pour contenir le {\color{monOrange}CSS} commun à toutes les pages.
+
+\subsubsection{Création du fichier {\color{monOrange}index.html}}
+
+Créez un fichier au premier niveau et appelez le {\tt index.html}.
+
+Dans les applications et les sites Web , {\tt index.html} est le point d'entrée par convention. C'est-à-dire que c'est le premier fichier envoyé au navigateur.
+
+Création des deux autres pages
+
+Notre projet comporte deux autres pages : une pour le formulaire de contact, et l'autre pour la localisation.
+
+Nous allons donc créer un fichier {\tt where.html} et un fichier {\tt contact.html}. Modification d'{\tt index.html}
+
+Dans le fichier {\tt index.html} nous allons mettre :
+%\begin{minted}[
+%mathescape,
+%framesep=2mm,
+%baselinestretch=1.2,
+%%fontsize=\footnotesize,
+%bgcolor=LightGray,
+%%linenos
+%]{html}
+%<!DOCTYPE html>
+%<html lang="fr">
+%<head>
+%<meta charset="UTF-8" /> 
+%<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+%<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+%<title>Café Florette | Accueil</title> 
+%<link rel="stylesheet" href="css/styles.css" /> 
+%</head> 
+%<body></body> 
+%</html>
+%\end{minted}
+\begin{minted}[
+mathescape,
+framesep=2mm,
+baselinestretch=1.2,
+%fontsize=\footnotesize,
+bgcolor=LightGray,
+%linenos
+]{html}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Café Florette | Accueil</title> 
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+</body>
+</html>
+
+\end{minted}
+
+
+Nous utilisons le générateur Emmet en faisant ! .
+
+Ensuite nous importons notre fichier {\tt styles.css} en donnant un chemin relatif à partir du dossier courant (le dossier où se situe {\tt index.html} ).
+
+\subsubsection{Modification de styles.css}
+
+Dans le fichier {\tt styles.css} nous allons mettre :
+\begin{minted}[
+mathescape,
+framesep=2mm,
+baselinestretch=1.2,
+%fontsize=\footnotesize,
+bgcolor=LightGray,
+%linenos
+]{css}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1, h2, h3 {
+    margin-bottom: 20px;
+}
+\end{minted}
+La première règle utilise le sélecteur universel * pour enlever les marges et le remplissage par défaut, notamment appliqués sur body . La deuxième règle sélectionne tous les titres de niveau {\tt h1,h2} et {\tt h3} et définit une marge de 20px vers le bas.
+
+\subsection{Mise en place du header}
+\subsubsection{Modification de index.html}
+Nous allons commencer par mettre en place la structure de la partie header de notre page :
+\begin{minted}[
+mathescape,
+framesep=2mm,
+baselinestretch=1.2,
+%fontsize=\footnotesize,
+bgcolor=LightGray,
+%linenos
+]{html}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Café Florette | Accueil</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h1><a href="./index.html">CAFE FLORETTE</a></h1>
+        <ul>
+          <li><a href="./index.html">Accueil</a></li>
+          <li><a href="./where.html">Nous trouver</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+  </body>
+</html>
+\end{minted}
+\begin{itemize}
+\item Nous ajoutons un lien pour charger la police Open Sans depuis une API de Google . 
+\item Nous avons sélectionné trois graisses : 300, 400 et 700.
+\item Dans la partie body nous créons un élément sémantique header dans lequel nous plaçons un élément sémantique nav car il contiendra les liens pour naviguer sur les pages de notre site.
+
+\item Dans cet élément nav , nous plaçons le titre de la page h1 qui est cliquable car nous y imbriquons un élément a .
+
+\item Ainsi, les utilisateurs seront redirigés sur la page d'accueil lorsqu'ils cliquerons sur le titre. 
+
+\item Ensuite, nous créons une liste non ordonnée ul , dans laquelle nous plaçons trois list items . Chaque li contient un lien dans un élément a pour pouvoir naviguer vers les autres pages du site.
+
+\end{itemize}
+\subsubsection{Raccourci Emmet}
+Nous allons voir un nouveau raccourci Emmet qui permet de grouper des éléments pour appliquer par exemple * .
+
+Ici nous voulons créer trois fois des li dans lesquels nous avons des a : {\tt ul>(li>a)*3}
+\subsubsection{Modification de styles.css}
+Nous allons ajouter quelques règles CSS dans notre fichier styles.css :
+\begin{minted}[
+mathescape,
+framesep=2mm,
+baselinestretch=1.2,
+%fontsize=\footnotesize,
+bgcolor=LightGray,
+%linenos
+]{css}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  margin-bottom: 20px;
+}
+
+a {
+  color: #222;
+  text-decoration: none;
+}
+\end{minted}
+
+\begin{enumerate}
+\item Nous commençons par utiliser la police Open Sans chargée depuis Google pour tous nos éléments. Nous définissons une famille de polices de repli dans le cas où la police ne pourrait être chargée.
+
+\item Ensuite, nous remplaçons les règles CSS par défaut pour les éléments a : à savoir le soulignage et le bleu.
+
+\item Nous enlevons le soulignage en faisant text-decoration: none; et nous changeons la couleur avec la propriété color .
+\end{enumerate}
+
+\subsubsection{Modification de index.html}
+Nous allons maintenant attaquer le style de notre header :
+\begin{minted}[
+mathescape,
+framesep=2mm,
+baselinestretch=1.2,
+%fontsize=\footnotesize,
+bgcolor=LightGray,
+%linenos
+]{html}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Café Florette | Accueil</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <nav>
+        <h1><a href="./index.html">CAFE FLORETTE</a></h1>
+        <ul>
+          <li><a class="active" href="./index.html">Accueil</a></li>
+          <li><a href="./where.html">Nous trouver</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+  </body>
+</html>
+\end{minted}
+
+Pour cela, nous ajoutons deux classes qui nous permettront de définir des règles CSS .
+
+\begin{enumerate}
+\item Une première classe header qui nous permettra spécifiquement de cibler ce header (pour rappel, nous pouvons avoir plusieurs éléments sémantiques header dans une même page).
+
+\item Une seconde classe, active , qui nous permettra de définir un style particulier pour le lien de l'accueil. Cela permettra d'indiquer à l'utilisateur qu'il a sélectionné le lien "Accueil" et qu'il est sur la page correspondante.
+\end{enumerate}
+
+\subsubsection{Modification de styles.css}
+
+Nous allons maintenant passer aux règles de style :
+\begin{minted}[
+mathescape,
+framesep=2mm,
+baselinestretch=1.2,
+%fontsize=\footnotesize,
+bgcolor=LightGray,
+%linenos
+]{css}
+* {
+  margin: 0;
+}
+
+html,
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+h1,h2,h3 {
+  margin-bottom: 20px;
+}
+
+a {
+  color: #222;
+  text-decoration: none;
+}
+
+/* Header */
+.header {
+  background: black;
+  overflow: auto;
+  line-height: 1.7em;
+}
+
+.header nav h1 {
+  float: left;
+  padding: 20px;
+  margin-bottom: 0;
+}
+
+.header nav h1 a {
+  color: white;
+}
+
+.header nav ul {
+  float: right;
+  list-style: none;
+}
+
+.header nav ul li {
+  float: left;
+}
+
+.header nav ul li a {
+  color: white;
+  padding: 20px;
+  display: block;
+}
+
+.header nav ul li a:hover,
+.active {
+  background: #444;
+}
+\end{minted}
+
+Nous allons reprendre ensemble les éléments essentiels.
+\begin{itemize}
+\item {\bf Pourquoi avons-nous dû utiliser {\color{monOrange}overflow-auto} sur le parent des éléments positionnés en float ?}
+\\ \\
+Le container {\color{monOrange}header} ne contient que des éléments qui sont positionnés en {\color{monOrange}float} .
+\\ \\
+Or, pour rappel, lorsque nous plaçons un élément en {\color{monOrange}float} , il est retiré du flux normal des éléments.
+\\ \\
+Du coup, l'élément {\color{monOrange}header} fait comme si il n'y avait pas d'éléments et il n'a donc pas de hauteur (pour rappel les éléments de bloc prennent la hauteur de leur contenu).
+\\ \\
+L'utilisation de {\color{monOrange}overflow: auto} permet la création d'un contexte de formatage de blocs et oblige l'élément à prendre en compte les éléments positionnés en {\color{monOrange}float} .
+\\ \\
+Ne vous attardez pas trop sur ce point car ce n'est pas l'approche la plus moderne. Nous verrons comment il est possible de réaliser la même chose avec le {\color{monOrange}CSS} le plus moderne lorsque nous verrons les boites flexibles et les grilles dans les chapitres suivants.
+\\ \\
+Sachez que c'était la meilleure manière de faire sans ces deux modules {\color{monOrange}CSS} plus modernes. Il est encore possible que vous la rencontriez sur des sites développés il y a quelques temps.
+\\ \\
+\item {\bf Pourquoi devons nous définir une {\color{monOrange}line-height} ?}
+\\ \\
+Par défaut, les navigateurs prennent {\color{monOrange}1.2} (ce qui signifie que la valeur de {\color{monOrange}font-size} de l'élément est multiplié par {\color{monOrange}1.2}).
+\\ \\
+Donc comme un {\color{monOrange}h1} dans une {\color{monOrange}nav} a une taille de {\color{monOrange}1.5em} par défaut sa {\color{monOrange}line-height} sera de {\color{monOrange}1.2*1.5*16px} donc {\color{monOrange}28.8 px} . Car pour rappel, dans un navigateur, {\color{monOrange}1em} vaut {\color{monOrange}16px} par défaut.
+\\ \\
+Et comme les éléments ont une taille de {\color{monOrange}1 em} soit {\color{monOrange}16px} , les liens auront une {\color{monOrange}line-height} de {\color{monOrange}1.2*1*16 px} soit {\color{monOrange}19.2 px} .
+\\ \\
+Pour donner à nos éléments la même {\color{monOrange}line-height} , nous la fixons donc à {\color{monOrange}1.7em} ce qui permet que les clics sur les liens puissent se faire sur toute la hauteur du {\color{monOrange}header}.
+\\ \\
+Nous ne détaillerons pas plus le comportement des éléments en float car ce n'est pas utile pour vous. Nous verrons très en détails les grilles et les boites flexibles à la place.
+
+\end{itemize}
+
+\subsection{Mise en place de la partie centrale}
+
+\subsubsection{Modification de index.html}
+\begin{minted}[
+mathescape,
+framesep=2mm,
+baselinestretch=1.2,
+%fontsize=\footnotesize,
+bgcolor=LightGray,
+%linenos
+]{html}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Café Florette | Accueil</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <nav>
+        <h1><a href="./index.html">CAFE FLORETTE</a></h1>
+        <ul>
+          <li><a class="active" href="./index.html">Accueil</a></li>
+          <li><a href="./where.html">Nous trouver</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section class="vp">
+      <div class="vp-content">
+        <h1>Toute l'expertise française dans un café</h1>
+        <div class="separator"></div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur
+          nemo cupiditate earum eum porro unde sint ducimus vero voluptas,
+          perferendis quasi quia accusamus omnis rerum. Neque sapiente quidem
+          distinctio dolorem?
+        </p>
+        <a href="./where.html" class="btn btn-primary my-10">DECOUVRIR</a>
+      </div>
+    </section>
+  </body>
+</html>
+\end{minted}
+
+Nous mettons un élément sémantique section pour notre partie centrale sur lequel nous plaçons une classe vp .
+\begin{enumerate}
+\item A l'intérieur nous plaçons le titre principal dans un h1 .
+
+\item Ensuite nous créons une div pour créer un séparateur.
+
+\item Après, nous mettons un paragraphe de texte qui contiendrait normalement la description du lieu.
+
+\item Enfin, nous plaçons un lien que nous allons transformer en bouton avec plusieurs classes.
+\end{enumerate}
+\subsubsection{Modification de styles.css}
+
+Nous allons maintenant créer les règles CSS :
+\begin{minted}[
+mathescape,
+framesep=2mm,
+baselinestretch=1.2,
+%fontsize=\footnotesize,
+bgcolor=LightGray,
+%linenos
+]{css}
+/* General */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  margin-bottom: 20px;
+}
+
+a {
+  color: #222;
+  text-decoration: none;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+.my-10 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.separator {
+  margin: 20px auto;
+  height: 10px;
+  width: 100px;
+  background: #111;
+}
+
+.btn {
+  display: inline-block;
+  font-size: 14px;
+  padding: 15px 25px;
+  border-radius: 30px;
+  font-weight: 700;
+}
+
+.btn-primary {
+  background: white;
+  color: #222;
+}
+
+.btn-primary:hover {
+  background: #222;
+  color: white;
+}
+
+/* Header */
+
+.header {
+  background: black;
+  overflow: auto;
+  line-height: 1.7em;
+}
+
+.header nav h1 {
+  float: left;
+  padding: 20px;
+  margin-bottom: 0;
+}
+
+.header nav h1 a {
+  color: white;
+}
+
+.header nav ul {
+  float: right;
+  list-style: none;
+}
+
+.header nav ul li {
+  float: left;
+}
+
+.header nav ul li a {
+  color: white;
+  padding: 20px;
+  display: block;
+}
+
+.header nav ul li a:hover,
+.active {
+  background: #444;
+}
+
+/* value proposition */
+.vp {
+  height: 700px;
+  background: url("https://dyma-images.s3.fr-par.scw.cloud/html-css/projects/project1/cafe1.jpg")
+    center center;
+  background-size: cover;
+  text-align: center;
+}
+
+.vp-content {
+  max-width: 600px;
+  padding-top: 150px;
+  color: white;
+  margin: auto;
+}
+
+.vp-content h1 {
+  font-size: 50px;
+}
+
+.vp-content p {
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  line-height: 1.9em;
+}
+\end{minted}
+
+\subsubsection{Description des classes génériques}
+
+Nous allons commencer par décrire les classes génériques que nous mettons en place.
+
+La classe {\color{monOrange}my-10} signifie {\color{monOrange}margin y} , donc verticales (en haut et en bas), de {\color{monOrange}10 px} . Donner un tel nom permet de savoir facilement ce que fait cette classe générique.
+
+La classe {\color{monOrange}separator} permet de créer un séparateur qui est seulement un rectangle de {\color{monOrange}1 00px} par {\color{monOrange}10px} avec un arrière-plan noir et des marges verticales (en haut et en bas) de {\color{monOrange}20px} . Nous le centrons horizontalement en passant {\color{monOrange}auto} en deuxième valeur de la propriété {\color{monOrange}margin} .
+
+La classe {\color{monOrange}btn} permet de créer un bouton en donnant au texte contenu du {\color{monOrange}padding} en haut en en bas de {\color{monOrange}15px} et à droite et à gauche de {\color{monOrange}25px} , elle permet également d'arrondir les angles avec {\color{monOrange}border-radius} . Elle dispose l'élément en {\color{monOrange}inline-block} pour pouvoir disposer plusieurs boutons sur la même ligne tout en respectant le {\color{monOrange}padding} . Enfin, elle donne au texte une taille de {\color{monOrange}14px} et une graisse de {\color{monOrange}700} .
+
+La classe {\color{monOrange}btn-primary} s'utilisera toujours avec la classe {\color{monOrange}btn} et permet de donner une couleur blanche à l'arrière-plan et une couleur noire au texte.
+
+La classe {\color{monOrange}btn-primary:hover} permet d'utiliser une pseudo-classe pour inverser la couleur de l'arrière-plan et la couleur du texte lorsque l'utilisateur passe son curseur sur le bouton.
+
+\subsubsection{Description des classes pour le contenu central}
+
+Nous allons ensuite décrire les classes mises en place pour le contenu central. 
+
+La classe {\color{monOrange}vp} permet de créer un bloc de {\color{monOrange}700px} de hauteur pour positionner une image en arrière-plan en utilisant une {\color{monOrange}url} . Nous centrons l'image verticalement et horizontalement avec {\color{monOrange}center center} . Nous utilisons {\color{monOrange}cover} pour recouvrir l'espace disponible.
+
+La classe {\color{monOrange}vp-content} permet de mettre le texte en blanc, de le centrer horizontalement avec {\color{monOrange}margin: auto} . Elle permet également de mettre {\color{monOrange}150px} de {\color{monOrange}padding} au-dessus. Enfin, elle définit une largeur maximale à {\color{monOrange}600px} .
+
+\end{document}
+
