@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.12)  28 NOV 2024 06:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.12)  28 NOV 2024 06:42
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -672,7 +672,7 @@ File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count335
 \l__pdf_internal_box=\box72
 )
-No file TD1.aux.
+(./TD1.aux)
 \openout1 = `TD1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
@@ -691,6 +691,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
 LaTeX Info: Redefining \degres on input line 32.
 LaTeX Info: Redefining \up on input line 32.
+
 
 Package french.ldf Warning: OT1 encoding should not be used for French.
 (french.ldf)                Add \usepackage[T1]{fontenc} to the preamble
@@ -896,19 +897,19 @@ runsystem(pygmentize -l css -f latex -P commandprefix=PYG -F tokenmerge -P stri
 pnl=False -P mathescape=True -o TD1.out.pyg TD1.pyg)...executed.
 
  [8] (./TD1.out.pyg)
-Underfull \vbox (badness 10000) detected at line 570
+Underfull \vbox (badness 10000) detected at line 569
  []
 
 
-Underfull \vbox (badness 10000) detected at line 570
+Underfull \vbox (badness 10000) detected at line 569
  []
 
 [9]
-Underfull \vbox (badness 10000) detected at line 570
+Underfull \vbox (badness 10000) detected at line 569
  []
 
 
-Underfull \vbox (badness 10000) detected at line 570
+Underfull \vbox (badness 10000) detected at line 569
  []
 
 [10] [11] [12] (./TD1.aux)
@@ -918,9 +919,9 @@ runsystem(rm TD1.out.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 19563 strings out of 478268
- 388875 string characters out of 5846347
- 714306 words of memory out of 5000000
+ 19565 strings out of 478268
+ 388891 string characters out of 5846347
+ 714299 words of memory out of 5000000
  37388 multiletter control sequences out of 15000+600000
  479671 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -933,7 +934,7 @@ usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
 r/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/
 local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
 ocal/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on TD1.pdf (12 pages, 129507 bytes).
+Output written on TD1.pdf (12 pages, 129464 bytes).
 PDF statistics:
  86 PDF objects out of 1000 (max. 8388607)
  55 compressed objects within 1 object stream
