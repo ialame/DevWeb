@@ -25,7 +25,7 @@
 \definecolor{monOrange}{rgb}{0.97,0.35,0.04}
 
 % Informations le titre, le(s) auteur(s), la date
-\title{Les bases du CSS}
+\title{TP1}
 \author{Ibrahim ALAME}
 \date{\today}
 \includeonly{ introduction.tex} 
@@ -33,27 +33,23 @@
  
 \maketitle
 
-\section{Présentation du chapitre}
-\subsection{Objectifs {\color{monOrange}CSS}}
-%includegraphics[width=10cm]{images/image07.png}
-\begin{itemize}
-\item Dans ce chapitre nous allons réaliser notre premier projet !
-\item Nous allons faire un site avec plusieurs pages de présentation d'un café fictif à Paris.
-\item  Nous nous emploierons à vous montrer les meilleures pratiques de développement et nous mettrons en oeuvre tout ce que nous avons appris sur les langages HTML et CSS .
-\end{itemize}
 
-\subsection{Création du projet}
+%includegraphics[width=10cm]{images/image07.png}
+ Nous allons faire un site avec plusieurs pages de présentation d'un café fictif à Paris.
+
+
+\section{Création du projet}
 \begin{enumerate}
-\item  Commencez par créer un dossier, par exemple cafe .
-\item  Dans ce dossier créez un dossier images qui contiendra les images de notre site. Ensuite ouvrez le dossier cafe dans VS Code .
+\item  Commencez par créer dans WebStorm un projet vide, par exemple cafe .
+\item  Dans ce dossier créez un dossier images qui contiendra les images de notre site. 
 \item  Créez un dossier css au même niveau que le dossier images.
 \end{enumerate}
-\subsubsection{Création du fichier {\color{monOrange}styles.css}}
+\subsection{Création du fichier {\color{monOrange}styles.css}}
 Créez un fichier {\tt styles.css} dans le dossier {\color{monOrange}css}.
 
 Il est très courant dans un projet front-end de créer un fichier {\tt styles.css} pour contenir le {\color{monOrange}CSS} commun à toutes les pages.
 
-\subsubsection{Création du fichier {\color{monOrange}index.html}}
+\subsection{Création du fichier {\color{monOrange}index.html}}
 
 Créez un fichier au premier niveau et appelez le {\tt index.html}.
 
@@ -99,7 +95,6 @@ bgcolor=LightGray,
 <head>
     <meta charset="UTF-8">
     <title>Café Florette | Accueil</title> 
-    <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 
@@ -108,14 +103,16 @@ bgcolor=LightGray,
 
 \end{minted}
 
-
-Nous utilisons le générateur Emmet en faisant ! .
-
 Ensuite nous importons notre fichier {\tt styles.css} en donnant un chemin relatif à partir du dossier courant (le dossier où se situe {\tt index.html} ).
 
 \subsubsection{Modification de styles.css}
 
 Dans le fichier {\tt styles.css} nous allons mettre :
+
+
+Appliquer deux règles:
+\begin{enumerate}
+\item La première règle utilise le sélecteur universel * pour enlever les marges et le remplissage par défaut, notamment appliqués sur body . 
 \begin{minted}[
 mathescape,
 framesep=2mm,
@@ -129,16 +126,17 @@ bgcolor=LightGray,
     padding: 0;
     box-sizing: border-box;
 }
-
-h1, h2, h3 {
-    margin-bottom: 20px;
-}
 \end{minted}
-La première règle utilise le sélecteur universel * pour enlever les marges et le remplissage par défaut, notamment appliqués sur body . La deuxième règle sélectionne tous les titres de niveau {\tt h1,h2} et {\tt h3} et définit une marge de 20px vers le bas.
+\item La deuxième règle sélectionne tous les titres de niveau {\tt h1,h2} et {\tt h3} et définit une marge de 20px vers le bas ({\tt margin-bottom: 20px;}).
+\end{enumerate}
+
 
 \subsection{Mise en place du header}
 \subsubsection{Modification de index.html}
 Nous allons commencer par mettre en place la structure de la partie header de notre page :
+
+\begin{itemize}
+\item Nous ajoutons un lien pour charger la police Open Sans depuis une API de Google . 
 \begin{minted}[
 mathescape,
 framesep=2mm,
@@ -147,43 +145,57 @@ baselinestretch=1.2,
 bgcolor=LightGray,
 %linenos
 ]{html}
-<!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Café Florette | Accueil</title>
-    <link rel="stylesheet" href="css/styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
+<link
+href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"
+rel="stylesheet"
+/>
+\end{minted}
+
+\item Nous avons sélectionné trois graisses : 300, 400 et 700.
+\item Dans la partie body nous créons un élément sémantique header dans lequel nous plaçons un élément sémantique nav car il contiendra les liens pour naviguer sur les pages de notre site.
+\begin{minted}[
+mathescape,
+framesep=2mm,
+baselinestretch=1.2,
+%fontsize=\footnotesize,
+bgcolor=LightGray,
+%linenos
+]{html}
     <header>
       <nav>
-        <h1><a href="./index.html">CAFE FLORETTE</a></h1>
+        
+      </nav>
+    </header>
+\end{minted}
+\item Dans cet élément nav , nous plaçons le titre de la page h1 qui est cliquable car nous y imbriquons un élément a .
+\begin{minted}[
+mathescape,
+framesep=2mm,
+baselinestretch=1.2,
+%fontsize=\footnotesize,
+bgcolor=LightGray,
+%linenos
+]{html}
+    <h1><a href="./index.html">CAFE FLORETTE</a></h1>
+\end{minted}
+
+\item Ainsi, les utilisateurs seront redirigés sur la page d'accueil lorsqu'ils cliquerons sur le titre. 
+
+\item Ensuite, nous créons une liste non ordonnée ul , dans laquelle nous plaçons trois list items . Chaque li contient un lien dans un élément a pour pouvoir naviguer vers les autres pages du site.
+\begin{minted}[
+mathescape,
+framesep=2mm,
+baselinestretch=1.2,
+%fontsize=\footnotesize,
+bgcolor=LightGray,
+%linenos
+]{html}
         <ul>
           <li><a href="./index.html">Accueil</a></li>
           <li><a href="./where.html">Nous trouver</a></li>
           <li><a href="./contact.html">Contact</a></li>
         </ul>
-      </nav>
-    </header>
-  </body>
-</html>
 \end{minted}
-\begin{itemize}
-\item Nous ajoutons un lien pour charger la police Open Sans depuis une API de Google . 
-\item Nous avons sélectionné trois graisses : 300, 400 et 700.
-\item Dans la partie body nous créons un élément sémantique header dans lequel nous plaçons un élément sémantique nav car il contiendra les liens pour naviguer sur les pages de notre site.
-
-\item Dans cet élément nav , nous plaçons le titre de la page h1 qui est cliquable car nous y imbriquons un élément a .
-
-\item Ainsi, les utilisateurs seront redirigés sur la page d'accueil lorsqu'ils cliquerons sur le titre. 
-
-\item Ensuite, nous créons une liste non ordonnée ul , dans laquelle nous plaçons trois list items . Chaque li contient un lien dans un élément a pour pouvoir naviguer vers les autres pages du site.
 
 \end{itemize}
 \subsubsection{Raccourci Emmet}
@@ -192,6 +204,8 @@ Nous allons voir un nouveau raccourci Emmet qui permet de grouper des éléments
 Ici nous voulons créer trois fois des li dans lesquels nous avons des a : {\tt ul>(li>a)*3}
 \subsubsection{Modification de styles.css}
 Nous allons ajouter quelques règles CSS dans notre fichier styles.css :
+\begin{enumerate}
+\item Nous commençons par utiliser la police Open Sans chargée depuis Google pour tous nos éléments. Nous définissons une famille de polices de repli dans le cas où la police ne pourrait être chargée.
 \begin{minted}[
 mathescape,
 framesep=2mm,
@@ -200,81 +214,24 @@ baselinestretch=1.2,
 bgcolor=LightGray,
 %linenos
 ]{css}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 html,
 body {
   font-family: "Open Sans", sans-serif;
 }
-
-h1,
-h2,
-h3 {
-  margin-bottom: 20px;
-}
-
-a {
-  color: #222;
-  text-decoration: none;
-}
 \end{minted}
+\item Ensuite, nous remplaçons les règles CSS par défaut pour les éléments a : à savoir le soulignage et le bleu.  Nous enlevons le soulignage en faisant {\tt text-decoration: none;} et nous changeons la couleur avec la propriété color   ({\tt color: \#222;}).
 
-\begin{enumerate}
-\item Nous commençons par utiliser la police Open Sans chargée depuis Google pour tous nos éléments. Nous définissons une famille de polices de repli dans le cas où la police ne pourrait être chargée.
-
-\item Ensuite, nous remplaçons les règles CSS par défaut pour les éléments a : à savoir le soulignage et le bleu.
-
-\item Nous enlevons le soulignage en faisant text-decoration: none; et nous changeons la couleur avec la propriété color .
 \end{enumerate}
 
 \subsubsection{Modification de index.html}
 Nous allons maintenant attaquer le style de notre header :
-\begin{minted}[
-mathescape,
-framesep=2mm,
-baselinestretch=1.2,
-%fontsize=\footnotesize,
-bgcolor=LightGray,
-%linenos
-]{html}
-<!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Café Florette | Accueil</title>
-    <link rel="stylesheet" href="css/styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <header class="header">
-      <nav>
-        <h1><a href="./index.html">CAFE FLORETTE</a></h1>
-        <ul>
-          <li><a class="active" href="./index.html">Accueil</a></li>
-          <li><a href="./where.html">Nous trouver</a></li>
-          <li><a href="./contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
-  </body>
-</html>
-\end{minted}
 
 Pour cela, nous ajoutons deux classes qui nous permettront de définir des règles CSS .
 
 \begin{enumerate}
-\item Une première classe header qui nous permettra spécifiquement de cibler ce header (pour rappel, nous pouvons avoir plusieurs éléments sémantiques header dans une même page).
+\item Une première classe {\tt header} qui nous permettra spécifiquement de cibler ce header (pour rappel, nous pouvons avoir plusieurs éléments sémantiques header dans une même page).
 
-\item Une seconde classe, active , qui nous permettra de définir un style particulier pour le lien de l'accueil. Cela permettra d'indiquer à l'utilisateur qu'il a sélectionné le lien "Accueil" et qu'il est sur la page correspondante.
+\item Une seconde classe {\tt active} , qui nous permettra de définir un style particulier pour le lien de l'accueil. Cela permettra d'indiquer à l'utilisateur qu'il a sélectionné le lien "Accueil" et qu'il est sur la page correspondante.
 \end{enumerate}
 
 \subsubsection{Modification de styles.css}
@@ -377,6 +334,8 @@ Nous ne détaillerons pas plus le comportement des éléments en float car ce n'
 \subsection{Mise en place de la partie centrale}
 
 \subsubsection{Modification de index.html}
+
+Nous mettons un élément sémantique section pour notre partie centrale sur lequel nous plaçons une classe vp .
 \begin{minted}[
 mathescape,
 framesep=2mm,
@@ -385,56 +344,62 @@ baselinestretch=1.2,
 bgcolor=LightGray,
 %linenos
 ]{html}
-<!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Café Florette | Accueil</title>
-    <link rel="stylesheet" href="css/styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <header class="header">
-      <nav>
-        <h1><a href="./index.html">CAFE FLORETTE</a></h1>
-        <ul>
-          <li><a class="active" href="./index.html">Accueil</a></li>
-          <li><a href="./where.html">Nous trouver</a></li>
-          <li><a href="./contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
-    <section class="vp">
-      <div class="vp-content">
-        <h1>Toute l'expertise française dans un café</h1>
-        <div class="separator"></div>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur
-          nemo cupiditate earum eum porro unde sint ducimus vero voluptas,
-          perferendis quasi quia accusamus omnis rerum. Neque sapiente quidem
-          distinctio dolorem?
-        </p>
-        <a href="./where.html" class="btn btn-primary my-10">DECOUVRIR</a>
-      </div>
-    </section>
-  </body>
-</html>
+<section class="vp">
+	<div class="vp-content">
+	
+	</div>
+</section>
 \end{minted}
-
-Nous mettons un élément sémantique section pour notre partie centrale sur lequel nous plaçons une classe vp .
 \begin{enumerate}
 \item A l'intérieur nous plaçons le titre principal dans un h1 .
-
+\begin{minted}[
+mathescape,
+framesep=2mm,
+baselinestretch=1.2,
+%fontsize=\footnotesize,
+bgcolor=LightGray,
+%linenos
+]{html}
+<h1>Toute l'expertise française dans un café</h1>
+\end{minted}
 \item Ensuite nous créons une div pour créer un séparateur.
-
+\begin{minted}[
+mathescape,
+framesep=2mm,
+baselinestretch=1.2,
+%fontsize=\footnotesize,
+bgcolor=LightGray,
+%linenos
+]{html}
+<div class="separator"></div>
+\end{minted}
 \item Après, nous mettons un paragraphe de texte qui contiendrait normalement la description du lieu.
-
+\begin{minted}[
+mathescape,
+framesep=2mm,
+baselinestretch=1.2,
+%fontsize=\footnotesize,
+bgcolor=LightGray,
+%linenos
+]{html}
+<p>
+   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur
+   nemo cupiditate earum eum porro unde sint ducimus vero voluptas,
+   perferendis quasi quia accusamus omnis rerum. Neque sapiente quidem
+   distinctio dolorem?
+</p>
+\end{minted}
 \item Enfin, nous plaçons un lien que nous allons transformer en bouton avec plusieurs classes.
+\begin{minted}[
+mathescape,
+framesep=2mm,
+baselinestretch=1.2,
+%fontsize=\footnotesize,
+bgcolor=LightGray,
+%linenos
+]{html}
+<a href="./where.html" class="btn btn-primary my-10">DECOUVRIR</a>
+\end{minted}
 \end{enumerate}
 \subsubsection{Modification de styles.css}
 
@@ -448,28 +413,6 @@ bgcolor=LightGray,
 %linenos
 ]{css}
 /* General */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body {
-  font-family: "Open Sans", sans-serif;
-}
-
-h1,
-h2,
-h3 {
-  margin-bottom: 20px;
-}
-
-a {
-  color: #222;
-  text-decoration: none;
-}
-
 p {
   margin-bottom: 10px;
 }
@@ -571,24 +514,387 @@ p {
 \subsubsection{Description des classes génériques}
 
 Nous allons commencer par décrire les classes génériques que nous mettons en place.
+\begin{enumerate}
+\item La classe {\color{monOrange}my-10} signifie {\color{monOrange}margin y} , donc verticales (en haut et en bas), de {\color{monOrange}10 px} . Donner un tel nom permet de savoir facilement ce que fait cette classe générique.
 
-La classe {\color{monOrange}my-10} signifie {\color{monOrange}margin y} , donc verticales (en haut et en bas), de {\color{monOrange}10 px} . Donner un tel nom permet de savoir facilement ce que fait cette classe générique.
+\item La classe {\color{monOrange}separator} permet de créer un séparateur qui est seulement un rectangle de {\color{monOrange}100px} par {\color{monOrange}10px} avec un arrière-plan noir et des marges verticales (en haut et en bas) de {\color{monOrange}20px} . Nous le centrons horizontalement en passant {\color{monOrange}auto} en deuxième valeur de la propriété {\color{monOrange}margin} .
 
-La classe {\color{monOrange}separator} permet de créer un séparateur qui est seulement un rectangle de {\color{monOrange}1 00px} par {\color{monOrange}10px} avec un arrière-plan noir et des marges verticales (en haut et en bas) de {\color{monOrange}20px} . Nous le centrons horizontalement en passant {\color{monOrange}auto} en deuxième valeur de la propriété {\color{monOrange}margin} .
+\item La classe {\color{monOrange}btn} permet de créer un bouton en donnant au texte contenu du {\color{monOrange}padding} en haut en en bas de {\color{monOrange}15px} et à droite et à gauche de {\color{monOrange}25px} , elle permet également d'arrondir les angles avec {\color{monOrange}border-radius} . Elle dispose l'élément en {\color{monOrange}inline-block} pour pouvoir disposer plusieurs boutons sur la même ligne tout en respectant le {\color{monOrange}padding} . Enfin, elle donne au texte une taille de {\color{monOrange}14px} et une graisse de {\color{monOrange}700} .
 
-La classe {\color{monOrange}btn} permet de créer un bouton en donnant au texte contenu du {\color{monOrange}padding} en haut en en bas de {\color{monOrange}15px} et à droite et à gauche de {\color{monOrange}25px} , elle permet également d'arrondir les angles avec {\color{monOrange}border-radius} . Elle dispose l'élément en {\color{monOrange}inline-block} pour pouvoir disposer plusieurs boutons sur la même ligne tout en respectant le {\color{monOrange}padding} . Enfin, elle donne au texte une taille de {\color{monOrange}14px} et une graisse de {\color{monOrange}700} .
+\item La classe {\color{monOrange}btn-primary} s'utilisera toujours avec la classe {\color{monOrange}btn} et permet de donner une couleur blanche à l'arrière-plan et une couleur noire au texte.
 
-La classe {\color{monOrange}btn-primary} s'utilisera toujours avec la classe {\color{monOrange}btn} et permet de donner une couleur blanche à l'arrière-plan et une couleur noire au texte.
+\item La classe {\color{monOrange}btn-primary:hover} permet d'utiliser une pseudo-classe pour inverser la couleur de l'arrière-plan et la couleur du texte lorsque l'utilisateur passe son curseur sur le bouton.
+\end{enumerate}
 
-La classe {\color{monOrange}btn-primary:hover} permet d'utiliser une pseudo-classe pour inverser la couleur de l'arrière-plan et la couleur du texte lorsque l'utilisateur passe son curseur sur le bouton.
 
 \subsubsection{Description des classes pour le contenu central}
 
 Nous allons ensuite décrire les classes mises en place pour le contenu central. 
+\begin{enumerate}
+\item La classe {\color{monOrange}vp} permet de créer un bloc de {\color{monOrange}700px} de hauteur pour positionner une image en arrière-plan en utilisant une {\color{monOrange}url} . Nous centrons l'image verticalement et horizontalement avec {\color{monOrange}center center} . Nous utilisons {\color{monOrange}cover} pour recouvrir l'espace disponible.
 
-La classe {\color{monOrange}vp} permet de créer un bloc de {\color{monOrange}700px} de hauteur pour positionner une image en arrière-plan en utilisant une {\color{monOrange}url} . Nous centrons l'image verticalement et horizontalement avec {\color{monOrange}center center} . Nous utilisons {\color{monOrange}cover} pour recouvrir l'espace disponible.
+\item La classe {\color{monOrange}vp-content} permet de mettre le texte en blanc, de le centrer horizontalement avec {\color{monOrange}margin: auto} . Elle permet également de mettre {\color{monOrange}150px} de {\color{monOrange}padding} au-dessus. Enfin, elle définit une largeur maximale à {\color{monOrange}600px} .
+\end{enumerate}
 
-La classe {\color{monOrange}vp-content} permet de mettre le texte en blanc, de le centrer horizontalement avec {\color{monOrange}margin: auto} . Elle permet également de mettre {\color{monOrange}150px} de {\color{monOrange}padding} au-dessus. Enfin, elle définit une largeur maximale à {\color{monOrange}600px} .
+\subsection{Suite et fin de la page d'accueil}
+\subsubsection{Modification de index.html}
+Nous allons terminer en ajoutant une photo, une section reservation et une partie footer .
+\begin{minted}[
+mathescape,
+framesep=2mm,
+baselinestretch=1.2,
+%fontsize=\footnotesize,
+bgcolor=LightGray,
+%linenos
+]{html}
+<!-- ... -->
+<div class="person"></div>
+<section class="reservation">
+  <div class="container">
+    <h2>Réservez dès maintenant</h2>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique
+      soluta voluptates, placeat iure neque dolores vel? Facere perspiciatis
+      vel quasi, deleniti inventore obcaecati animi harum totam. Hic, nisi
+      cumque.
+    </p>
+    <a href="./contact.html" class="btn btn-dark my-20">RESERVEZ</a>
+  </div>
+</section>
+<footer>
+    <p>Copyright &#9400; - florette - 2019</p>
+</footer>
+\end{minted}
+
+Nous ajoutons une {\color{monOrange}div} où nous placerons une photo en utilisant du {\color{monOrange}CSS} .
+
+Puis une nouvelle {\color{monOrange}section} permettant d'aller sur la page de contact.
+
+Et enfin, un bas de page standard avec un signe Copyright.
+
+Pour faire un signe {\color{monOrange}Copyright} vous pouvez utiliser les entités.
+
+Une entité {\color{monOrange}HTML} est une chaîne de caractères qui commence par une esperluette {\color{monOrange}\&} et se termine avec un point virgule {\color{monOrange};} .
+
+Les entités sont utilisées pour afficher des caractères réservés. De nombreux caractères ont des entités mnémoniques. Par exemple, l'entité pour le copyright est {\color{monOrange}©} que nous aurions également pu utiliser.
+
+\subsubsection{Modification de styles.css}
+
+Il nous reste à définir les sélecteurs et les règles correspondantes côté CSS :
+\begin{minted}[
+mathescape,
+framesep=2mm,
+baselinestretch=1.2,
+%fontsize=\footnotesize,
+bgcolor=LightGray,
+%linenos
+]{css}
+/* ... */
+.my-20 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+/* ... */
+.btn-dark {
+  background: #222;
+  color: white;
+}
+
+.btn-dark:hover {
+  background: white;
+  color: #222;
+  border: 1px solid #222;
+}
+
+/* ... */
+
+/* reservation */
+
+.reservation {
+  padding: 100px 0px;
+  text-align: center;
+}
+
+/* footer */
+
+footer {
+  background: #222;
+  color: white;
+  padding: 30px 0;
+  text-align: center;
+}
+
+footer p {
+  margin-bottom: 0px;
+}
+\end{minted}
+
+\begin{enumerate}
+\item {\color{monOrange}my-20} est une classe générique que nous créons pour appliquer des marges verticales (d'où le y ) de {\color{monOrange}20px} .
+
+\item {\color{monOrange}btn-dark} est une classe permettant de créer un bouton sombre plutôt que blanc. {\color{monOrange}btn-dark:hover} est un sélecteur utilisant une pseudo-classe afin de cibler les boutons sombres lorsque l'utilisateur passe sa souris dessus. Dans ce cas, nous inversons les couleurs et nous ajoutons une bordure noire pour bien distinguer le bouton.
+
+\item {\color{monOrange}reservation} permet simplement d'appliquer du remplissage ( {\color{monOrange}padding} ) en haut et en bas de l'élément et d'aligner le texte au centre du bloc.
+
+\item {\color{monOrange}footer} permet de créer un arrière-plan sombre et de mettre la couleur du texte à blanc. Il applique également du {\color{monOrange}padding} en haut et en bas de {\color{monOrange}30px} et aligne le texte au centre.
+
+\item {\color{monOrange}footer p} permet d'enlever la marge de {\color{monOrange}10px} que nous appliquons normalement à nos paragraphes. Il gagne sur le sélecteur p en spécificité ce qui permet donc de supprimer la marge pour le paragraphe du {\color{monOrange}footer} .
+\end{enumerate}
+
+\subsection{Mise en place de la page de localisation}
+\subsubsection{Modification de where.html}
+Nous allons mettre en place la page de localisation. Une partie sera similaire à la page d'accueil :
+\begin{minted}[
+mathescape,
+framesep=2mm,
+baselinestretch=1.2,
+%fontsize=\footnotesize,
+bgcolor=LightGray,
+%linenos
+]{html}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script
+      src="https://kit.fontawesome.com/97bb762bba.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Café florette | Localisation</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav>
+        <h1>
+          <a href="./index.html">CAFE FLORETTE</a>
+        </h1>
+        <ul>
+          <li><a href="./index.html">Accueil</a></li>
+          <li><a class="active" href="./where.html">Nous trouver</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section class="where">
+      <div class="container">
+        <img
+          class="where-img"
+          src="images/cafe2.png"
+          alt="carte"
+        />
+        <div class="where-text">
+          <h1 class="underline">Où nous trouver</h1>
+          <h3>
+            Métro : ligne <span class="chip chip-purple">4</span> - Odéon, ligne
+            <span class="chip chip-brown">11</span> - Mabillon
+          </h3>
+          <p>Adresse : 131 Boulevard Saint-Germain, 75006 Paris</p>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <p>Copyright &#9400; - florette - 2019</p>
+    </footer>
+  </body>
+</html>
+\end{minted}
+
+Sur cette page, nous aurons la même partie nav mais ce sera le lien "Nous trouver" qui aura la classe active .
+
+Nous aurons seulement une section avec l'image de l'emplacement du café, l'adresse et les accès en transport en commun.
+
+Nous avons mis un titre de niveau h1 qui décrit bien le contenu de la page, nous avons également mis un titre h3 avec les lignes de métro.
+
+\subsubsection{Modification de styles.css}
+
+Il ne reste qu'à faire les sélecteurs et les règles CSS :
+\begin{minted}[
+mathescape,
+framesep=2mm,
+baselinestretch=1.2,
+%fontsize=\footnotesize,
+bgcolor=LightGray,
+%linenos
+]{css}
+/* ... */
+.underline {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.chip {
+  display: inline-block;
+  text-align: center;
+  width: 30px;
+  border-radius: 100%;
+  background: #333;
+  color: white;
+}
+
+.chip-purple {
+  background: #be418c;
+}
+
+.chip-brown {
+  background: #8c5e24;
+}
+/* ... */
+
+/* where */
+
+.where {
+  padding: 180px 0;
+  overflow: auto;
+  min-height: 100vh;
+}
+
+.where-img {
+  float: left;
+  width: 45%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.where-text {
+  float: right;
+  width: 50%;
+}
+\end{minted}
+
+underline permet de mettre une ligne donnant un effet de soulignement. Il s'agit en fait seulement d'une bordure sur un seul côté de 1px grise. chip permet de créer une petite bulle. Nous utilisons une disposition inline-block pour pouvoir lui donner une taille et en mettre plusieurs sur la même ligne.
+
+Les autres sélecteurs permettent simplement de donner la couleur adaptée pour l'arrière plan des bulles.
+
+Pour la section nous utilisons également la propriété float pour l'image et le texte. Nous utilisons overflow: auto pour le container .
+
+\subsection{Mise en place de la page de contact}
+\subsubsection{Modification de contact.html}
+Il ne nous reste plus qu'à mettre en place la page de contact :
+\begin{minted}[
+mathescape,
+framesep=2mm,
+baselinestretch=1.2,
+%fontsize=\footnotesize,
+bgcolor=LightGray,
+%linenos
+]{html}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script
+      src="https://kit.fontawesome.com/97bb762bba.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Café florette | Accueil</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav>
+        <h1>
+          <a href="./index.html">CAFE FLORETTE</a>
+        </h1>
+        <ul>
+          <li><a href="./index.html">Accueil</a></li>
+          <li><a href="./where.html">Nous trouver</a></li>
+          <li><a class="active" href="./contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section class="contact">
+      <div class="contact-form-container">
+        <form action="#">
+          <h1 class="underline">Une question ? Contactez nous</h1>
+          <label class="my-20" for="name">Nom</label>
+          <input type="text" name="name" id="name" />
+          <label class="my-20" for="email">Email</label>
+          <input type="email" name="email" id="email" />
+          <label class="my-20" for="question">Questions et remarques</label>
+          <textarea name="question" id="question"></textarea>
+          <button class="btn btn-dark my-20">SOUMETTRE</button>
+        </form>
+      </div>
+    </section>
+    <footer>
+      <p>Copyright &#9400; - florette - 2019</p>
+    </footer>
+  </body>
+</html>
+\end{minted}
+
+Nous gardons également les mêmes liens dans nav mais plaçons cette fois la classe ac tive sur le lien "Contact".
+
+Nous avons une section qui va contenir notre formulaire de contact.
+
+Ce formulaire va comporter un titre de niveau h1 , deux input et un textarea .
+
+Nous plaçons un label pour chaque champ.
+
+Nous avons enfin un bouton sur lequel nous plaçons les classes que nous avions déjà définies pour obtenir un bouton sombre.
+
+A noter que nous ne plaçons rien dans action car nous n'avons pas de serveur où envoyer le formulaire.
+
+\subsubsection{Modification de styles.css}
+
+Nous passons maintenant au CSS :
+
+\begin{minted}[
+mathescape,
+framesep=2mm,
+baselinestretch=1.2,
+%fontsize=\footnotesize,
+bgcolor=LightGray,
+%linenos
+]{css}
+
+/* ... */
+
+/* contact */
+
+.contact {
+  padding: 180px 0px 100px 0px;
+  min-height: 100vh;
+}
+
+.contact-form-container {
+  max-width: 600px;
+  margin: auto;
+}
+
+.contact-form-container form label {
+  display: block;
+  font-weight: 700;
+}
+
+.contact-form-container form input,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.contact-form-container form textarea {
+  min-height: 80px;
+}
+\end{minted}
+
+Avec les sélecteurs contact-form-container form input et textarea , nous ciblons tous les champs de notre formulaire. Nous leur donnons une largeur de 100\% de leur élément parent qui a une taille maximale de 600px . Nous leur donnons une bordure de 1px en arrondissant les bordes avec border-radius .
 
 \end{document}
 
